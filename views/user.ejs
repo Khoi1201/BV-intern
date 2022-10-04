@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+  <h1>User infor</h1>
+
+  <p>User ID:
+    <%= userInfor._id %>
+  </p>
+  <p>Username:
+    <%= userInfor.username %>
+  </p>
+  <p>Department:
+    <%= userInfor.department.name %>
+  </p>
+
+  <% if (userInfor.isAdmin===true) { %>
+    <p>User privilege: Admin</p>
+    <% } else { %>
+      <p>User privilege: Normal User</p>
+      <% } %>
+
+        <h1>Projects</h1>
+
+
+        <%- include('partials/footer') %>
