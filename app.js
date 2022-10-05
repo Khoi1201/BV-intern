@@ -78,21 +78,10 @@ const defaultDepartments = [
   { name: "depart C" },
 ];
 
-const defaultProjects = [
-  {
-    name: "projectA",
-    logo: "linkLogo1",
-    url: "link1",
-    state: true,
-    department: departmentSchema,
-    majorStaff: [userSchema],
-    technicalStaff: [userSchema],
-  },
-];
-
 // do things
 
 app.get("/", (req, res) => {
+  // insert admin user
   User.register({ username: "admin" }, "admin", (err, newUser) => {
     if (err) {
       console.log(err);
@@ -103,6 +92,7 @@ app.get("/", (req, res) => {
       });
     }
   });
+  // insert default department
   Department.findOne({}, (err, foundDepartment) => {
     if (err) {
       console.log(err);
@@ -114,9 +104,8 @@ app.get("/", (req, res) => {
       }
     }
   });
-  User.findOne({ username: "admin" }, (err, foundAdmin) => {
-    Department.updateMany({}, { manager: foundAdmin }, {}, (err, res) => {});
-  });
+  
+
   res.render("login");
 });
 
